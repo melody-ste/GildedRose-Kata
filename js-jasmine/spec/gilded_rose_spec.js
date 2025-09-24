@@ -13,24 +13,21 @@ describe("Gilded Rose", function() {
       new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
       new Item("Backstage passes to a TAFKAL80ETC concert", 5, 39),
 
-      // This Conjured item does not work properly yet
       new Item("Conjured Mana Cake", 3, 6),
     ];
 
-    const days = Number(process.argv[2]) || 2;;
-    const gildedRose = new Shop(items);
+    const shop = new Shop(items);
+    shop.updateQuality();
 
-    for (let day = 0; day < days; day++) {
-      console.log(`\n-------- day ${day} --------`);
-      console.log("name, sellIn, quality");
-      items.forEach(item => console.log(`${item.name}, ${item.sellIn}, ${item.quality}`));
-      gildedRose.updateQuality();
-    }
+    expect(items[0].quality).toBe(19);
+    expect(items[1].quality).toBe(1);
+    expect(items[2].quality).toBe(6);
+    expect(items[3].quality).toBe(80);
+    expect(items[4].quality).toBe(80);
+    expect(items[5].quality).toBe(21);
+    expect(items[6].quality).toBe(50);
+    expect(items[7].quality).toBe(42);
+    expect(items[8].quality).toBe(4); 
   });
 
-  it("should foo", function() {
-    const gildedRose = new Shop([new Item("foo", 0, 0)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("fixme");
-  });
 });
